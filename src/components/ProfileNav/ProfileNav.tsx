@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import './ProfileNav.scss';
 import Logo from '../assets/logo-devlinks-large.svg';
-import {CgProfile} from 'react-icons/cg';
+import LogoSmall from '../assets/logo-devlinks-small.svg';
+import {CgProfile, CgEye} from 'react-icons/cg';
 import {HiOutlineLink} from 'react-icons/hi';
 
 function ProfileNav() {
@@ -26,12 +27,14 @@ function ProfileNav() {
         handleActiveNavLink();
     }, [])
 
+    const isMobile = window.innerWidth <= 395;
+
     return (
-        <nav className="container-fluid w-75 rounded-3 d-flex justify-content-center flex-column">
+        <nav className="container-md rounded-3 d-flex justify-content-center flex-column">
             <div className="row">
                 <div className="col d-flex align-items-center justify-content-between">
                     <img
-                        src={Logo}
+                        src={isMobile ? LogoSmall : Logo}
                         alt="logo"
                     />
                     <Link
@@ -40,7 +43,7 @@ function ProfileNav() {
                         id={activeLink === 'links' ? 'active' : ''}
                     >
                         <HiOutlineLink id="nav-icon" />
-                        Links
+                        {!isMobile && 'Links'}
                     </Link>
                 </div>
                 <div className="col d-flex align-items-center justify-content-between">
@@ -50,10 +53,14 @@ function ProfileNav() {
                         id={activeLink === 'details' ? 'active' : ''}
                     >
                         <CgProfile id="nav-icon" />
-                        Profile Details
+                        {!isMobile && 'Profile Details'}
                     </Link>
                     <Link to="" className="link" id="preview">
-                        Preview
+                        {isMobile ?
+                            <CgEye />
+                            :
+                            'Preview'
+                        }
                     </Link>
                 </div>
             </div>
