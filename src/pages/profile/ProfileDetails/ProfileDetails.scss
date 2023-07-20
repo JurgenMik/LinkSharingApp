@@ -1,0 +1,12 @@
+@import '../../../variables/variables.scss';
+
+.main-container-details {
+  max-width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding-top: 2rem;
+  background: $LightGray;
+  @media (max-width: $small-screen) {
+    padding-top: 0;
+  }
+}
