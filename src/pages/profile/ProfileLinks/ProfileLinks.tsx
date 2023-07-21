@@ -13,7 +13,7 @@ function ProfileLinks() {
 
                     </div>
                     <div className="col rounded-3 bg-white">
-                        <div className="container-md introduction p-1">
+                        <div className="introduction p-1">
                             <h1>Customize your links</h1>
                             <p>
                                 Add/edit/remove links below and then
@@ -23,7 +23,7 @@ function ProfileLinks() {
                                 + Add new link
                             </button>
                         </div>
-                        <div className="container-md d-flex flex-column align-items-center illustration">
+                        <div className="d-flex flex-column align-items-center illustration">
                             <img
                                 src={Illustration}
                                 alt="illustration-empty"
@@ -35,7 +35,7 @@ function ProfileLinks() {
                                 you share your profiles with everyone!
                             </p>
                         </div>
-                        <div className="container-md d-flex justify-content-end align-items-center save-link p-0">
+                        <div className="d-flex justify-content-end align-items-center save-link p-0">
                             <button id="disabled">
                                 Save
                             </button>
