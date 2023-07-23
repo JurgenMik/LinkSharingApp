@@ -35,6 +35,36 @@
           }
         }
       }
+      .links {
+        background: $LightGray;
+        padding: 1rem;
+        h1 {
+          font-size: 1rem;
+          font-weight: bold;
+          color: $DarkGray;
+          #link-icon {
+            margin-right: 0.5rem;
+            font-size: 1.15rem;
+          }
+        }
+        #remove {
+          font-weight: normal;
+          &:hover {
+            color: $DarkRed;
+            cursor: pointer;
+          }
+        }
+        #link-input {
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          margin-bottom: 0.5rem;
+          border: 1px solid $DarkishGray;
+          color: $DarkGray;
+        }
+        label {
+          font-size: 0.85rem;
+        }
+      }
       .illustration {
         height: 55%;
         background: $LightGray;
@@ -70,6 +100,7 @@
       }
       #disabled {
         background: $LightPinkishPurple;
+        cursor: unset;
       }
       #enabled {
         background: $DarkPurple;
