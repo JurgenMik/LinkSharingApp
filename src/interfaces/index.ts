@@ -3,3 +3,8 @@ export interface ProfileLink {
     platform: string,
     link: string
 }
+
+export interface SelectItem {
+    value: string,
+    label: any
+}

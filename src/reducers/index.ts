@@ -10,7 +10,7 @@ const reducerProfileLinks = (state: ProfileLink[] = [], action: {payload: any | 
             return state.map((link: ProfileLink) => {
                 if (link.id === action.payload.targetLink) {
                     return {...link,
-                        [action.payload.event?.target.name]: action.payload.event?.target.value
+                        [action.payload.property]: action.payload.value
                     };
                 }
                 return link;

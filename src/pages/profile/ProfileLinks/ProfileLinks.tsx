@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import './ProfileLinks.scss';
+import Select from 'react-select';
 import Illustration from '../../../components/assets/illustration-empty.svg';
-import {ProfileLink} from "../../../interfaces";
+import {ProfileLink, SelectItem} from "../../../interfaces";
 import {useSelector, connect} from 'react-redux';
+import {selectOptions, selectStyles} from "../../../utils/select";
 import {LiaGripLinesSolid} from 'react-icons/lia';
+import {HiOutlineLink} from 'react-icons/hi';
 import ProfileNav from '../../../components/ProfileNav/ProfileNav';
 
 function ProfileLinks(props: any) {
@@ -20,8 +23,8 @@ function ProfileLinks(props: any) {
         props.dispatch({type: 'AddNewProfileLink', payload: {...link, id: link.id++}});
     }
 
-    const handleProfileLinkChange = (id: number, e: React.ChangeEvent <HTMLInputElement | HTMLSelectElement>) => {
-        props.dispatch({type: 'EditProfileLink', payload: {targetLink: id, event: e}});
+    const handleProfileLinkChange = (id: number, profileChange: string, selector: string) => {
+        props.dispatch({type: 'EditProfileLink', payload: {targetLink: id, value: profileChange, property: selector}});
     }
 
     const handleRemoveProfileLink = (id: number) => {
@@ -60,27 +63,31 @@ function ProfileLinks(props: any) {
                                             </h1>
                                         </div>
                                         <label>Platform</label>
-                                        <select
-                                            name="platform"
-                                            id="link-input"
-                                            value={link.platform}
-                                            onChange={(e) =>
-                                                handleProfileLinkChange(link.id, e)
+                                        <Select
+                                            isSearchable={false}
+                                            className="mb-2"
+                                            styles={selectStyles}
+                                            value={selectOptions.find((item: SelectItem) =>
+                                                item.value === link.platform)
                                             }
-                                        >
-                                            <option value="">Select an option</option>
-                                            <option value="Test1">test1</option>
-                                            <option value="Test2">test2</option>
-                                            <option value="Test3">test3</option>
-                                        </select>
-                                        <label>Link</label>
-                                        <input
-                                            name="link"
-                                            id="link-input"
-                                            onChange={(e) =>
-                                                handleProfileLinkChange(link.id, e)
+                                            options={selectOptions}
+                                            onChange={(e: any) =>
+                                                handleProfileLinkChange(link.id, e.value, 'platform')
                                             }
                                         />
+                                        <div className="d-flex flex-column position-relative">
+                                            <label>Link</label>
+                                            <input
+                                                name="link"
+                                                id="link-input"
+                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                                    handleProfileLinkChange(link.id, e.target.value, 'link')
+                                                }
+                                            />
+                                            <HiOutlineLink
+                                                id="input-icon"
+                                            />
+                                        </div>
                                     </div>
                                 );
                             })

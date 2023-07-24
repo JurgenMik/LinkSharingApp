@@ -54,15 +54,25 @@
             cursor: pointer;
           }
         }
+        label {
+          font-size: 0.75rem;
+        }
         #link-input {
-          padding: 0.5rem;
+          padding: 0.5rem 3rem;
           border-radius: 0.5rem;
           margin-bottom: 0.5rem;
           border: 1px solid $DarkishGray;
           color: $DarkGray;
+          &:focus {
+            outline: 1px solid $DarkPurple;
+            box-shadow: 0 0 5px $DarkPurple;
+          }
         }
-        label {
-          font-size: 0.85rem;
+        #input-icon {
+          position: absolute;
+          top: 45%;
+          margin-left: 1rem;
+          color: $DarkGray;
         }
       }
       .illustration {
