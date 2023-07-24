@@ -24,6 +24,10 @@ function ProfileLinks(props: any) {
         props.dispatch({type: 'EditProfileLink', payload: {targetLink: id, event: e}});
     }
 
+    const handleRemoveProfileLink = (id: number) => {
+        props.dispatch({type: 'RemoveProfileLink', payload: {targetLink: id}});
+    }
+
     return (
         <div className="main-container-links">
             <ProfileNav />
@@ -51,7 +55,9 @@ function ProfileLinks(props: any) {
                                                 <LiaGripLinesSolid id="link-icon" />
                                                 Link #{link.id}
                                             </h1>
-                                            <h1 id="remove">Remove</h1>
+                                            <h1 id="remove" onClick={() => handleRemoveProfileLink(link.id)}>
+                                                Remove
+                                            </h1>
                                         </div>
                                         <label>Platform</label>
                                         <select

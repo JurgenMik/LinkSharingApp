@@ -16,6 +16,9 @@ const reducerProfileLinks = (state: ProfileLink[] = [], action: {payload: any | 
                 return link;
             });
         }
+        case 'RemoveProfileLink': {
+            return state.filter((link) => link.id !== action.payload.targetLink);
+        }
         default: {
             return state;
         }
