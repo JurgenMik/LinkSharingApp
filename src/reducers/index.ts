@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 import {ProfileLink} from "../interfaces";
 
-const reducerProfileLinks = (state: any = [], action: any) => {
+const reducerProfileLinks = (state: ProfileLink[] = [], action: {payload: any | object, type: string}) => {
     switch (action.type) {
         case 'AddNewProfileLink': {
             return [...state, action.payload];

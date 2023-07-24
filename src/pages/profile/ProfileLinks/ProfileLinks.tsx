@@ -14,7 +14,7 @@ function ProfileLinks(props: any) {
         platform: ''
     });
 
-    const profileLinks = useSelector((state: any) => state.links);
+    const profileLinks = useSelector((state: {links: ProfileLink[]}) => state.links);
 
     const handleAddNewProfileLink = () => {
         props.dispatch({type: 'AddNewProfileLink', payload: {...link, id: link.id++}});
