@@ -80,6 +80,7 @@ function ProfileLinks(props: any) {
                                             <input
                                                 name="link"
                                                 id="link-input"
+                                                placeholder="e.g https://github.com/JurgenMik"
                                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                                     handleProfileLinkChange(link.id, e.target.value, 'link')
                                                 }

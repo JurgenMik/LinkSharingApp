@@ -3,6 +3,7 @@
 .main-container-links {
   max-width: 100%;
   height: 100vh;
+  overflow: auto;
   margin: 0;
   padding-top: 2rem;
   background: $LightGray;
@@ -67,6 +68,10 @@
             outline: 1px solid $DarkPurple;
             box-shadow: 0 0 5px $DarkPurple;
           }
+          &::placeholder {
+            color: $DarkishGray;
+            font-weight: normal;
+          }
         }
         #input-icon {
           position: absolute;
@@ -99,8 +104,9 @@
       }
     }
     .save-link {
-      height: 10%;
+      height: 6.5rem;
       border-top: 1px solid $LightGray;
+      margin-top: 1rem;
       button {
         width: 5rem;
         padding: 0.5rem;
