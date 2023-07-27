@@ -58,6 +58,10 @@
         label {
           font-size: 0.75rem;
         }
+        span {
+          color: $DarkRed;
+          font-size: 0.90rem;
+        }
         #link-input {
           padding: 0.5rem 3rem;
           border-radius: 0.5rem;
@@ -75,7 +79,6 @@
         }
         #input-icon {
           position: absolute;
-          top: 45%;
           margin-left: 1rem;
           color: $DarkGray;
         }

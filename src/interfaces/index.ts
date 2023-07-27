@@ -8,3 +8,8 @@ export interface SelectItem {
     value: string,
     label: any
 }
+
+export interface ErrorMessage {
+    link: string,
+    platform: string
+}
