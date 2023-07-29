@@ -8,64 +8,71 @@ export const selectOptions: SelectItem[] = [
         value: 'Github',
         label: (
             <>
-                <PiGithubLogoFill />
+                <PiGithubLogoFill id="logo" />
                 Github
             </>
-        )
+        ),
+        background: '#1A1A1A'
     },
     {
         value: 'Youtube',
         label: (
             <>
-                <PiYoutubeLogoFill />
+                <PiYoutubeLogoFill id="logo" />
                 Youtube
             </>
-        )
+        ),
+        background: '#EE3939'
     },
     {
         value: 'LinkedIn',
         label: (
             <>
-                <PiLinkedinLogoFill />
+                <PiLinkedinLogoFill id="logo" />
                 LinkedIn
             </>
-        )
+        ),
+        background: '#2D68FF'
     },
     {
         value: 'Frontend Mentor',
         label: (
             <>
-                <SiFrontendmentor />
+                <SiFrontendmentor id="logo" />
                 Frontend Mentor
             </>
-        )
+        ),
+        background: '#e1dede'
     },
     {
         value: 'Facebook',
         label: (
             <>
-                <FaFacebook />
+                <FaFacebook id="logo" />
                 Facebook
             </>
-        )
+        ),
+        background: '#2442AC'
     },
     {
         value: 'Twitch',
         label: (
             <>
-                <FaTwitch />
+                <FaTwitch id="logo" />
                 Twitch
             </>
-        )
+        ),
+        background: '#EE3FC8'
     },
     {
         value: 'Codewars',
         label: (
             <>
-                <SiCodewars />
+                <SiCodewars id="logo" />
                 Codewars
             </>
-        )
+        ),
+        background: '#8A1A50'
     }
 ];
 

@@ -1,0 +1,29 @@
+@import '../../variables/variables.scss';
+
+.summary {
+  position: relative;
+  margin-top: 5rem;
+  .link-container {
+    top: 43.5%;
+  }
+  .summary-link {
+    width: 15rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    padding-left: 0.75rem;
+    span {
+      width: 100%;
+      font-size: 1rem;
+      color: white;
+      #logo {
+        font-size: 1.25rem;
+      }
+      a {
+        color: white;
+        margin-left: auto;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
