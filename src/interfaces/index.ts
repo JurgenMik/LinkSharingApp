@@ -7,6 +7,7 @@ export interface ProfileLink {
 export interface SelectItem {
     value: string,
     label: any
+    background: string
 }
 
 export interface ErrorMessage {

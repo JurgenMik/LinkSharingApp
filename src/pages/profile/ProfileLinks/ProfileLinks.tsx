@@ -10,6 +10,7 @@ import {linksValidationSchema} from "../../../utils/validation";
 import {LiaGripLinesSolid} from 'react-icons/lia';
 import {HiOutlineLink} from 'react-icons/hi';
 import ProfileNav from '../../../components/ProfileNav/ProfileNav';
+import ProfileSummary from '../../../components/ProfileSummary/ProfileSummary';
 
 function ProfileLinks(props: any) {
 
@@ -71,14 +72,18 @@ function ProfileLinks(props: any) {
         }
     }
 
+    const isMobile = window.innerWidth <= 395;
+
     return (
         <div className="main-container-links">
             <ProfileNav />
             <div className="container-md mt-4 layout">
                 <div className="row gap-4">
-                    <div className="col-md-5 bg-white rounded-3">
-
-                    </div>
+                    {!isMobile &&
+                        <div className="col-md-5 bg-white rounded-3">
+                            <ProfileSummary />
+                        </div>
+                    }
                     <div className="col rounded-3 bg-white">
                         <div className="introduction p-1">
                             <h1>Customize your links</h1>
@@ -124,6 +129,7 @@ function ProfileLinks(props: any) {
                                                 name="link"
                                                 id="link-input"
                                                 placeholder="e.g https://github.com/JurgenMik"
+                                                value={link.link}
                                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                                     handleProfileLinkChange(link.id, e.target.value, 'link')
                                                 }
