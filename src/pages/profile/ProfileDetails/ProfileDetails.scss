@@ -6,7 +6,102 @@
   margin: 0;
   padding-top: 2rem;
   background: $LightGray;
+  font-family: 'Instrument sans', serif;
   @media (max-width: $small-screen) {
     padding-top: 0;
+  }
+  .layout {
+    height: 85%;
+    .row {
+      height: 100%;
+      .profile-intro {
+        margin-top: 2.5rem;
+        h1 {
+          font-size: 1.75rem;
+          font-weight: bold;
+        }
+        p {
+          color: $DarkGray;
+        }
+      }
+      .profile-details {
+        height: 12.5rem;
+        background: $LightGray;
+        label {
+          text-align: center;
+          font-size: 0.90rem;
+          color: $DarkGray;
+        }
+        input {
+          width: 50%;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          border: 1px solid $DarkishGray;
+          margin-bottom: 1rem;
+          &::placeholder {
+            color: $DarkishGray;
+          }
+          &:focus {
+            outline: 1px solid $DarkPurple;
+            box-shadow: 0 0 5px $DarkPurple;
+          }
+        }
+      }
+      .profile-upload {
+        height: 15rem;
+        background: $LightGray;
+        color: $DarkGray;
+        align-items: center;
+        @media (max-width: $small-screen) {
+          height: 20rem;
+          flex-direction: column;
+          align-items: normal;
+          gap: 1rem;
+        }
+        h1 {
+          width: 50%;
+          font-size: 1rem;
+        }
+        .upload {
+          width: 50%;
+          height: 100%;
+          border-radius: 0.5rem;
+          color: $DarkPurple;
+          font-weight: bold;
+          background: $LightPinkishPurple;
+          label {
+            height: 100%;
+            #icon-upload {
+              font-size: 2rem;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        p {
+          padding-left: 1rem;
+          font-size: 0.85rem;
+          @media (max-width: $small-screen) {
+            padding-left: 0;
+          }
+        }
+      }
+      .save-profile {
+        height: 6.5rem;
+        border-top: 1px solid $LightGray;
+        margin-top: 1rem;
+        button {
+          width: 5rem;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          border: none;
+          color: white;
+        }
+        #enabled {
+          background: $DarkPurple;
+        }
+      }
+    }
   }
 }
