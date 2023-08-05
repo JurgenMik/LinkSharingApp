@@ -1,16 +1,24 @@
 import React from 'react';
 import './ProfileDetails.scss';
+import {ProfileInfo} from "../../../interfaces";
 import {IoImageOutline} from 'react-icons/io5';
+import {useSelector, connect} from 'react-redux';
 import ProfileNav from '../../../components/ProfileNav/ProfileNav';
 import ProfileSummary from "../../../components/ProfileSummary/ProfileSummary";
 
-function ProfileDetails() {
+function ProfileDetails(props: any) {
+
+    const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
+
+    const handleProfileDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        props.dispatch({type: 'EditProfileDetails', payload: e});
+    }
 
     const isMobile = window.innerWidth <= 395;
 
     return (
         <div className="main-container-details">
-            <ProfileNav/>
+            <ProfileNav />
             <div className="container-md mt-4 layout">
                 <div className="row gap-4">
                     {!isMobile &&
@@ -53,6 +61,10 @@ function ProfileDetails() {
                                 <input
                                     placeholder="e.g John"
                                     name="first_name"
+                                    value={profileDetails.first_name}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                        handleProfileDetailsChange(e)
+                                    }
                                 />
                             </div>
                             <div className="d-flex justify-content-between align-items-center">
@@ -60,6 +72,10 @@ function ProfileDetails() {
                                 <input
                                     placeholder="e.g Appleseed"
                                     name="last_name"
+                                    value={profileDetails.last_name}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                        handleProfileDetailsChange(e)
+                                    }
                                 />
                             </div>
                             <div className="d-flex justify-content-between align-items-center">
@@ -67,6 +83,10 @@ function ProfileDetails() {
                                 <input
                                     placeholder="e.g email@example.com"
                                     name="email"
+                                    value={profileDetails.email}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                        handleProfileDetailsChange(e)
+                                    }
                                 />
                             </div>
                         </div>
@@ -82,4 +102,4 @@ function ProfileDetails() {
     )
 }
 
-export default ProfileDetails;
+export default connect()(ProfileDetails);

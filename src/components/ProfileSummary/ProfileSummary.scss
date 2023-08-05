@@ -3,6 +3,31 @@
 .summary {
   position: relative;
   margin-top: 5rem;
+  .info-container {
+    height: 12.5rem;
+    top: 10%;
+    img {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      margin-bottom: 1.10rem;
+    }
+    h1 {
+      text-align: center;
+      border-radius: 0.5rem;
+      background: $White;
+      color: $DarkGray;
+    }
+    #name {
+      min-width: 10rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    #email {
+      min-width: 5rem;
+      font-size: 1rem;
+    }
+  }
   .link-container {
     top: 43.5%;
   }

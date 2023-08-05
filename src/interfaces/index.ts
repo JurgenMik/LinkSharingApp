@@ -4,6 +4,13 @@ export interface ProfileLink {
     link: string
 }
 
+export interface ProfileInfo {
+    profile_img: string,
+    first_name: string,
+    last_name: string,
+    email: string
+}
+
 export interface SelectItem {
     value: string,
     label: any

@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProfileSummary.scss';
-import {ProfileLink} from "../../interfaces";
+import {ProfileLink, ProfileInfo} from "../../interfaces";
 import {useSelector, connect} from 'react-redux';
 import {selectOptions} from "../../utils/select";
 import {FiArrowRight} from 'react-icons/fi';
@@ -10,12 +10,26 @@ function ProfileSummary() {
 
     const profileLinks = useSelector((state: {links: ProfileLink[]}) => state.links);
 
+    const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
+
     return (
         <div className="w-100 d-flex justify-content-center summary">
             <img
                 src={PhoneMockup}
                 alt="mockup"
             />
+            <div className="d-flex flex-column align-items-center position-absolute info-container">
+                <img
+                    src=""
+                    alt="avatar"
+                />
+                <h1 id="name">
+                    {profileDetails.first_name} {profileDetails.last_name}
+                </h1>
+                <h1 id="email">
+                    {profileDetails.email}
+                </h1>
+            </div>
             <div className="d-flex flex-column position-absolute link-container">
                 {profileLinks.map((link) => {
                     const selectedLinks = selectOptions.find((option) => option.value === link.platform);
