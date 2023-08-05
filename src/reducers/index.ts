@@ -1,4 +1,5 @@
 import {combineReducers} from "redux";
+import {handleCapitalizeFirstLetter} from "../utils";
 import {ProfileLink, ProfileInfo} from "../interfaces";
 
 const reducerProfileLinks = (state: ProfileLink[] = [], action: {payload: any | object, type: string}) => {
@@ -35,8 +36,12 @@ const profileInfo = {
 const reducerProfileDetails = (state: ProfileInfo = profileInfo, action: {payload: any | object, type: string}) => {
     switch (action.type) {
         case 'EditProfileDetails': {
-            return {...state,
-                [action.payload.target.name]: action.payload.target.value}
+            return {
+                ...state,
+                [action.payload.target.name]: action.payload.target.name !== 'email' && action.payload.target.name !== 'profile_img'
+                    ? handleCapitalizeFirstLetter(action.payload.target.value)
+                    : action.payload.target.value
+            };
         }
         default: {
             return state;

@@ -2,7 +2,6 @@ import React from 'react';
 import './ProfileSummary.scss';
 import {ProfileLink, ProfileInfo} from "../../interfaces";
 import {useSelector, connect} from 'react-redux';
-import {handleCapitalizeFirstLetter} from "../../utils";
 import {selectOptions} from "../../utils/select";
 import {FiArrowRight} from 'react-icons/fi';
 import PhoneMockup from '../assets/illustration-phone-mockup.svg';
@@ -25,7 +24,7 @@ function ProfileSummary() {
                     alt="avatar"
                 />
                 <h1 id="name">
-                    {handleCapitalizeFirstLetter(profileDetails.first_name, profileDetails.last_name)}
+                    {profileDetails.first_name} {profileDetails.last_name}
                 </h1>
                 <h1 id="email">
                     {profileDetails.email}
