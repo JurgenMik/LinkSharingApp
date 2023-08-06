@@ -10,6 +10,21 @@ function ProfileDetails(props: any) {
 
     const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
 
+    const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
+        const file = e.target.files[0];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onloadend = () => {
+            props.dispatch({type: 'EditProfileImage', payload: {imgBlob: reader.result}});
+        };
+
+        reader.onerror = (err) => {
+            console.log('Error:', err);
+        }
+    }
+
     const handleProfileDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.dispatch({type: 'EditProfileDetails', payload: e});
     }
@@ -37,17 +52,31 @@ function ProfileDetails(props: any) {
                         <div className="d-flex justify-content-between rounded-3 p-3 profile-upload">
                             <h1>Profile picture</h1>
                             <div className="upload">
+                                {profileDetails.profile_img &&
+                                    <img
+                                        src={profileDetails.profile_img}
+                                        alt="preview"
+                                    />
+                                }
                                 <label
+                                    style={{color: profileDetails.profile_img && 'white'}}
                                     className="d-flex flex-column align-items-center justify-content-center"
                                     htmlFor="profileInput"
                                 >
                                     <IoImageOutline id="icon-upload" />
-                                    + Upload Image
+                                    {profileDetails.profile_img
+                                        ? 'Change Image'
+                                        : '+ Upload Image'
+                                    }
                                 </label>
                                 <input
                                     className="d-none"
                                     id="profileInput"
                                     type="file"
+                                    accept=".jpeg,.jpg,.png"
+                                    onChange={(e) =>
+                                        handleProfileImageChange(e)
+                                    }
                                 />
                             </div>
                             <p>

@@ -38,10 +38,13 @@ const reducerProfileDetails = (state: ProfileInfo = profileInfo, action: {payloa
         case 'EditProfileDetails': {
             return {
                 ...state,
-                [action.payload.target.name]: action.payload.target.name !== 'email' && action.payload.target.name !== 'profile_img'
+                [action.payload.target.name]: action.payload.target.name !== 'email'
                     ? handleCapitalizeFirstLetter(action.payload.target.value)
                     : action.payload.target.value
             };
+        }
+        case 'EditProfileImage': {
+            return {...state, profile_img: action.payload.imgBlob};
         }
         default: {
             return state;

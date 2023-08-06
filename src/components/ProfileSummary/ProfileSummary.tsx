@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProfileSummary.scss';
 import {ProfileLink, ProfileInfo} from "../../interfaces";
-import {useSelector, connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {selectOptions} from "../../utils/select";
 import {FiArrowRight} from 'react-icons/fi';
 import PhoneMockup from '../assets/illustration-phone-mockup.svg';
@@ -19,10 +19,12 @@ function ProfileSummary() {
                 alt="mockup"
             />
             <div className="d-flex flex-column align-items-center position-absolute info-container">
-                <img
-                    src=""
-                    alt="avatar"
-                />
+                {profileDetails.profile_img &&
+                    <img
+                        src={profileDetails.profile_img}
+                        alt="avatar"
+                    />
+                }
                 <h1 id="name">
                     {profileDetails.first_name} {profileDetails.last_name}
                 </h1>
@@ -55,4 +57,4 @@ function ProfileSummary() {
     )
 }
 
-export default connect()(ProfileSummary);
+export default ProfileSummary;
