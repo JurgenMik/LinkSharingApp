@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './ProfileDetails.scss';
 import {ProfileInfo} from "../../../interfaces";
 import {IoImageOutline} from 'react-icons/io5';
@@ -8,15 +8,29 @@ import ProfileSummary from "../../../components/ProfileSummary/ProfileSummary";
 
 function ProfileDetails(props: any) {
 
+    const [isFileError, setFileUploadError] = useState<boolean>();
+
     const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
 
     const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
+        const allowedFileTypes = ['image/png', 'image/jpeg'];
+
         const file = e.target.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        if (!allowedFileTypes.includes(file.type)) {
+            return setFileUploadError(true);
+        }
 
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
         reader.onloadend = () => {
+            setFileUploadError(false);
+
             props.dispatch({type: 'EditProfileImage', payload: {imgBlob: reader.result}});
         };
 
@@ -79,7 +93,7 @@ function ProfileDetails(props: any) {
                                     }
                                 />
                             </div>
-                            <p>
+                            <p id={isFileError ? 'error' : ''}>
                                 Image must be below 1024x1024px.
                                 Use PNG or JPG format
                             </p>
