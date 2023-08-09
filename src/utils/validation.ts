@@ -16,3 +16,32 @@ export const linksValidationSchema = () => {
         })
     );
 }
+
+const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+export const detailsValidationSchema = () => {
+    return (
+        Joi.object({
+            profile_img: Joi.string()
+                .min(1)
+                .required()
+                .label('Profile Image'),
+            first_name: Joi.string()
+                .min(3)
+                .message('Provide a valid first name')
+                .required()
+                .label('First Name'),
+            last_name: Joi.string()
+                .min(3)
+                .message('Provide a valid last name')
+                .required()
+                .label('Last Name'),
+            email: Joi.string()
+                .min(1)
+                .pattern(emailRegExp)
+                .message('Please provide a valid email format')
+                .required()
+                .label('Email')
+        })
+    );
+}

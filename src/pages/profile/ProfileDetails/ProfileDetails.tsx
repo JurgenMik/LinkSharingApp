@@ -3,12 +3,16 @@ import './ProfileDetails.scss';
 import {ProfileInfo} from "../../../interfaces";
 import {IoImageOutline} from 'react-icons/io5';
 import {useSelector, connect} from 'react-redux';
+import {detailsValidationSchema} from "../../../utils/validation";
 import ProfileNav from '../../../components/ProfileNav/ProfileNav';
 import ProfileSummary from "../../../components/ProfileSummary/ProfileSummary";
 
 function ProfileDetails(props: any) {
 
+    const [fieldError, setFieldError] = useState<ProfileInfo | null>();
     const [isFileError, setFileUploadError] = useState<boolean>();
+
+    const validationSchema = detailsValidationSchema();
 
     const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
 
@@ -43,6 +47,35 @@ function ProfileDetails(props: any) {
         props.dispatch({type: 'EditProfileDetails', payload: e});
     }
 
+    const handleValidateProfileDetails = () => {
+        const {error} = validationSchema.validate(profileDetails, {abortEarly: false});
+
+        if (error) {
+            const newFieldErrors: any = {};
+
+            error.details.forEach((error) => {
+                const fieldName = error.path[0];
+                const errorMessage = error.message;
+
+                newFieldErrors[fieldName] = errorMessage;
+            });
+
+            setFieldError(newFieldErrors);
+            return false;
+        } else {
+            setFieldError(null);
+            return true;
+        }
+    };
+
+    const handleSubmitProfileDetails = () => {
+        let fieldsAreValid = handleValidateProfileDetails();
+
+        if (fieldsAreValid) {
+            console.log('no errors');
+        }
+    };
+
     const isMobile = window.innerWidth <= 395;
 
     return (
@@ -64,8 +97,11 @@ function ProfileDetails(props: any) {
                             </p>
                         </div>
                         <div className="d-flex justify-content-between rounded-3 p-3 profile-upload">
-                            <h1>Profile picture</h1>
-                            <div className="upload">
+                            <h1>Profile picture*</h1>
+                            <div
+                                style={{border: fieldError?.profile_img ? '1px solid red' : 'none'}}
+                                className="upload"
+                            >
                                 {profileDetails.profile_img &&
                                     <img
                                         src={profileDetails.profile_img}
@@ -99,8 +135,13 @@ function ProfileDetails(props: any) {
                             </p>
                         </div>
                         <div className="mt-3 rounded-3 p-3 profile-details">
-                            <div className="d-flex justify-content-between align-items-center">
+                            <div className="d-flex justify-content-between align-items-center flex-wrap">
                                 <label>First Name*</label>
+                                {fieldError &&
+                                    <h1 id="error">
+                                        {fieldError.first_name}
+                                    </h1>
+                                }
                                 <input
                                     placeholder="e.g John"
                                     name="first_name"
@@ -110,8 +151,13 @@ function ProfileDetails(props: any) {
                                     }
                                 />
                             </div>
-                            <div className="d-flex justify-content-between align-items-center">
+                            <div className="d-flex justify-content-between align-items-center flex-wrap">
                                 <label>Last Name*</label>
+                                {fieldError &&
+                                    <h1 id="error">
+                                        {fieldError.last_name}
+                                    </h1>
+                                }
                                 <input
                                     placeholder="e.g Appleseed"
                                     name="last_name"
@@ -121,8 +167,13 @@ function ProfileDetails(props: any) {
                                     }
                                 />
                             </div>
-                            <div className="d-flex justify-content-between align-items-center">
-                                <label>Email</label>
+                            <div className="d-flex justify-content-between align-items-center flex-wrap">
+                                <label>Email*</label>
+                                {fieldError &&
+                                    <h1 id="error">
+                                        {fieldError.email}
+                                    </h1>
+                                }
                                 <input
                                     placeholder="e.g email@example.com"
                                     name="email"
@@ -134,7 +185,7 @@ function ProfileDetails(props: any) {
                             </div>
                         </div>
                         <div className="d-flex justify-content-end align-items-center p-0 save-profile">
-                            <button id="enabled">
+                            <button id="enabled" onClick={handleSubmitProfileDetails}>
                                 Save
                             </button>
                         </div>

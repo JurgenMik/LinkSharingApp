@@ -27,6 +27,13 @@
       .profile-details {
         height: 12.5rem;
         background: $LightGray;
+        @media (max-width: $small-screen) {
+          height: 16.5rem;
+        }
+        #error {
+          color: $DarkRed;
+          font-size: 0.85rem;
+        }
         label {
           text-align: center;
           font-size: 0.90rem;
@@ -38,6 +45,9 @@
           border-radius: 0.5rem;
           border: 1px solid $DarkishGray;
           margin-bottom: 1rem;
+          @media (max-width: $small-screen) {
+            width: 100%;
+          }
           &::placeholder {
             color: $DarkishGray;
           }
