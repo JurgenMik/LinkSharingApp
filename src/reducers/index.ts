@@ -1,5 +1,6 @@
 import {combineReducers} from "redux";
-import {ProfileLink} from "../interfaces";
+import {handleCapitalizeFirstLetter} from "../utils";
+import {ProfileLink, ProfileInfo} from "../interfaces";
 
 const reducerProfileLinks = (state: ProfileLink[] = [], action: {payload: any | object, type: string}) => {
     switch (action.type) {
@@ -25,8 +26,35 @@ const reducerProfileLinks = (state: ProfileLink[] = [], action: {payload: any | 
     }
 }
 
+const profileInfo = {
+    profile_img: '',
+    first_name: '',
+    last_name: '',
+    email: ''
+};
+
+const reducerProfileDetails = (state: ProfileInfo = profileInfo, action: {payload: any | object, type: string}) => {
+    switch (action.type) {
+        case 'EditProfileDetails': {
+            return {
+                ...state,
+                [action.payload.target.name]: action.payload.target.name !== 'email'
+                    ? handleCapitalizeFirstLetter(action.payload.target.value)
+                    : action.payload.target.value
+            };
+        }
+        case 'EditProfileImage': {
+            return {...state, profile_img: action.payload.imgBlob};
+        }
+        default: {
+            return state;
+        }
+    }
+}
+
 const rootReducer = combineReducers({
-    links: reducerProfileLinks
+    links: reducerProfileLinks,
+    p_info: reducerProfileDetails
 });
 
 export default rootReducer;
