@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import './ProfileDetails.scss';
 import {ProfileInfo} from "../../../interfaces";
-import {IoImageOutline} from 'react-icons/io5';
+import {IoImageOutline, IoSaveOutline} from 'react-icons/io5';
 import {useSelector, connect} from 'react-redux';
 import {detailsValidationSchema} from "../../../utils/validation";
 import ProfileNav from '../../../components/ProfileNav/ProfileNav';
 import ProfileSummary from "../../../components/ProfileSummary/ProfileSummary";
+import ProfileSubmit from "../../../components/ProfileSubmit";
 
 function ProfileDetails(props: any) {
 
     const [fieldError, setFieldError] = useState<ProfileInfo | null>();
     const [isFileError, setFileUploadError] = useState<boolean>();
+    const [isSaved, setSaved] = useState<boolean>();
 
     const validationSchema = detailsValidationSchema();
 
@@ -72,15 +74,27 @@ function ProfileDetails(props: any) {
         let fieldsAreValid = handleValidateProfileDetails();
 
         if (fieldsAreValid) {
-            console.log('no errors');
+            setSaved(true);
         }
     };
+
+    const handleCloseSubmitAlert = () => {
+        setSaved(false);
+    }
 
     const isMobile = window.innerWidth <= 395;
 
     return (
         <div className="main-container-details">
             <ProfileNav />
+            {isSaved &&
+                <ProfileSubmit
+                    message={'Your changes have been successfully changed!'}
+                    open={isSaved}
+                    icon={<IoSaveOutline />}
+                    handleCloseSubmitAlert={handleCloseSubmitAlert}
+                />
+            }
             <div className="container-md mt-4 layout">
                 <div className="row gap-4">
                     {!isMobile &&
