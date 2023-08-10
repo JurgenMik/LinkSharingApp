@@ -7,12 +7,14 @@ export const linksValidationSchema = () => {
         Joi.object({
             link: Joi.string()
                 .max(100)
-                .pattern(urlRegExp)
+                .pattern(new RegExp(urlRegExp))
                 .message('Please provide a valid URL format')
-                .required(),
+                .required()
+                .label('Link'),
             platform: Joi.string()
                 .min(1)
                 .required()
+                .label('Platform')
         })
     );
 }
@@ -38,7 +40,7 @@ export const detailsValidationSchema = () => {
                 .label('Last Name'),
             email: Joi.string()
                 .min(1)
-                .pattern(emailRegExp)
+                .pattern(new RegExp(emailRegExp))
                 .message('Please provide a valid email format')
                 .required()
                 .label('Email')
