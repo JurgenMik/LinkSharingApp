@@ -18,10 +18,10 @@ function ProfileDetails(props: any) {
 
     const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
 
-    const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
+    const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const allowedFileTypes = ['image/png', 'image/jpeg'];
 
-        const file = e.target.files[0];
+        const file = e.target.files?.[0];
 
         if (!file) {
             return;
@@ -49,15 +49,15 @@ function ProfileDetails(props: any) {
         props.dispatch({type: 'EditProfileDetails', payload: e});
     }
 
-    const handleValidateProfileDetails = () => {
+    const handleValidateProfileDetails = (): boolean => {
         const {error} = validationSchema.validate(profileDetails, {abortEarly: false});
 
         if (error) {
             const newFieldErrors: any = {};
 
-            error.details.forEach((error) => {
-                const fieldName = error.path[0];
-                const errorMessage = error.message;
+            error.details.forEach((err) => {
+                const fieldName = err.path[0];
+                const errorMessage = err.message;
 
                 newFieldErrors[fieldName] = errorMessage;
             });

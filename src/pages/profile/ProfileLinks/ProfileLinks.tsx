@@ -39,7 +39,7 @@ function ProfileLinks(props: any) {
         props.dispatch({type: 'RemoveProfileLink', payload: {targetLink: id}});
     }
 
-    const handleValidateProfileLinks = () => {
+    const handleValidateProfileLinks = (): ErrorMessage[] => {
         let fieldErrors: ErrorMessage[] = [];
 
         profileLinks.forEach((link: ProfileLink) => {
@@ -50,7 +50,10 @@ function ProfileLinks(props: any) {
 
                 error.details.forEach((err => {
                     if (err.path[0] !== 'id') {
-                        fieldError[err.path[0]] = err.message;
+                        const fieldName = err.path[0];
+                        const errorMessage = err.message;
+
+                        fieldError[fieldName] = errorMessage;
                     }
                 }));
 
@@ -58,16 +61,15 @@ function ProfileLinks(props: any) {
             }
         });
         setValidationErrors(fieldErrors);
-
         return fieldErrors;
     }
 
     const handleProfileLinksSubmit = () => {
         let fieldErrors = handleValidateProfileLinks();
 
-        const allErrorsAreEmpty = fieldErrors.every((err) => Object.keys(err).length === 0);
+        const fieldsAreValid = fieldErrors.every((err) => Object.keys(err).length === 0);
 
-        if (allErrorsAreEmpty) {
+        if (fieldsAreValid) {
             navigate('/profile/details');
         }
     }
