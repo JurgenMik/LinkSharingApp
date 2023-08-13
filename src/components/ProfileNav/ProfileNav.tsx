@@ -1,16 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import './ProfileNav.scss';
+import {useSelector} from 'react-redux';
 import Logo from '../assets/logo-devlinks-large.svg';
 import LogoSmall from '../assets/logo-devlinks-small.svg';
 import {CgProfile, CgEye} from 'react-icons/cg';
 import {HiOutlineLink} from 'react-icons/hi';
+import {ProfileInfo} from "../../interfaces";
 
 function ProfileNav() {
 
     const [activeLink, setActive] = useState<string>();
 
     const location = useLocation();
+
+    const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
 
     const handleActiveNavLink = () => {
         switch (location.pathname) {
@@ -21,6 +25,12 @@ function ProfileNav() {
                 return setActive('details');
             }
         }
+    }
+
+    const handleGetProfilePreviewLink = () => {
+        const profileFirstName = profileDetails.first_name ? profileDetails.first_name : 'unknown';
+
+        return `/profile/${profileFirstName}/preview`;
     }
 
     useEffect(() => {
@@ -55,7 +65,11 @@ function ProfileNav() {
                         <CgProfile id="nav-icon" />
                         {!isMobile && 'Profile Details'}
                     </Link>
-                    <Link to="" className="link" id="preview">
+                    <Link
+                        to={handleGetProfilePreviewLink()}
+                        className="link"
+                        id="preview"
+                    >
                         {isMobile ?
                             <CgEye />
                             :
