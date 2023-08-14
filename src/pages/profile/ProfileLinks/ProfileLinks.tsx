@@ -83,7 +83,7 @@ function ProfileLinks(props: any) {
                 <div className="row gap-4">
                     {!isMobile &&
                         <div className="col-md-5 bg-white rounded-3">
-                            <ProfileSummary />
+                            <ProfileSummary mock={true} />
                         </div>
                     }
                     <div className="col rounded-3 bg-white">

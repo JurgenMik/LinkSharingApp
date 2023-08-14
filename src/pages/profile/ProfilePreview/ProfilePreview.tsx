@@ -4,9 +4,12 @@ import ProfileSummary from '../../../components/ProfileSummary/ProfileSummary';
 
 function ProfilePreview() {
     return (
-        <>
-            <ProfileSummary />
-        </>
+        <div className="main-container-preview">
+            <div className="preview-header" />
+            <ProfileSummary
+                mock={false}
+            />
+        </div>
     )
 }
 
