@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useLocation} from "react-router-dom";
 import './ProfilePreview.scss';
 import {HiOutlineLink} from 'react-icons/hi';
+import {handleMobileDetection} from "../../../utils";
 import ProfileSummary from '../../../components/ProfileSummary/ProfileSummary';
 import PreviewNav from "../../../components/PreviewNav/PreviewNav";
 import ProfileSubmit from "../../../components/ProfileSubmit";
@@ -30,7 +31,7 @@ function ProfilePreview() {
         setCopied(false);
     }
 
-    const isMobile = window.innerWidth <= 395;
+    const isMobile = handleMobileDetection();
 
     return (
         <div className="main-container-preview">

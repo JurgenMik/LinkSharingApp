@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import './ProfileNav.scss';
 import {useSelector} from 'react-redux';
+import {handleMobileDetection} from "../../utils";
 import Logo from '../assets/logo-devlinks-large.svg';
 import LogoSmall from '../assets/logo-devlinks-small.svg';
 import {CgProfile, CgEye} from 'react-icons/cg';
@@ -37,7 +38,7 @@ function ProfileNav() {
         handleActiveNavLink();
     }, [])
 
-    const isMobile = window.innerWidth <= 395;
+    const isMobile = handleMobileDetection();
 
     return (
         <nav className="container-md rounded-3 d-flex justify-content-center flex-column">

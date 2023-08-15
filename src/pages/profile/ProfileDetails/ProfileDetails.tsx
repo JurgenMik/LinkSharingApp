@@ -4,6 +4,7 @@ import {ProfileInfo} from "../../../interfaces";
 import {IoImageOutline, IoSaveOutline} from 'react-icons/io5';
 import {useSelector, connect} from 'react-redux';
 import {detailsValidationSchema} from "../../../utils/validation";
+import {handleMobileDetection} from "../../../utils";
 import ProfileNav from '../../../components/ProfileNav/ProfileNav';
 import ProfileSummary from "../../../components/ProfileSummary/ProfileSummary";
 import ProfileSubmit from "../../../components/ProfileSubmit";
@@ -82,7 +83,7 @@ function ProfileDetails(props: any) {
         setSaved(false);
     }
 
-    const isMobile = window.innerWidth <= 395;
+    const isMobile = handleMobileDetection();
 
     return (
         <div className="main-container-details">
