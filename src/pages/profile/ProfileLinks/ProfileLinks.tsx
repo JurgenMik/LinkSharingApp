@@ -6,6 +6,7 @@ import Illustration from '../../../components/assets/illustration-empty.svg';
 import {ProfileLink, SelectItem, ErrorMessage} from "../../../interfaces";
 import {useSelector, connect} from 'react-redux';
 import {selectOptions, selectStyles} from "../../../utils/select";
+import {handleMobileDetection} from "../../../utils";
 import {linksValidationSchema} from "../../../utils/validation";
 import {LiaGripLinesSolid} from 'react-icons/lia';
 import {HiOutlineLink} from 'react-icons/hi';
@@ -74,7 +75,7 @@ function ProfileLinks(props: any) {
         }
     }
 
-    const isMobile = window.innerWidth <= 395;
+    const isMobile = handleMobileDetection();
 
     return (
         <div className="main-container-links">
@@ -83,7 +84,7 @@ function ProfileLinks(props: any) {
                 <div className="row gap-4">
                     {!isMobile &&
                         <div className="col-md-5 bg-white rounded-3">
-                            <ProfileSummary />
+                            <ProfileSummary mock={true} />
                         </div>
                     }
                     <div className="col rounded-3 bg-white">

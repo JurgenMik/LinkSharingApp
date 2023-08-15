@@ -28,9 +28,6 @@
       font-size: 1rem;
     }
   }
-  .link-container {
-    top: 43.5%;
-  }
   .summary-link {
     width: 15rem;
     height: 3rem;
@@ -51,4 +48,17 @@
       }
     }
   }
+}
+
+.preview {
+  position: absolute;
+  padding-top: 1rem;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 30rem;
+  width: 20rem;
+  background: $White;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

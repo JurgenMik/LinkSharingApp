@@ -6,19 +6,24 @@ import {selectOptions} from "../../utils/select";
 import {FiArrowRight} from 'react-icons/fi';
 import PhoneMockup from '../assets/illustration-phone-mockup.svg';
 
-function ProfileSummary() {
+function ProfileSummary({mock}: {mock: boolean}) {
 
     const profileLinks = useSelector((state: {links: ProfileLink[]}) => state.links);
 
     const profileDetails = useSelector((state: {p_info: ProfileInfo}) => state.p_info);
 
     return (
-        <div className="w-100 d-flex justify-content-center summary">
-            <img
-                src={PhoneMockup}
-                alt="mockup"
-            />
-            <div className="d-flex flex-column align-items-center position-absolute info-container">
+        <div className={`d-flex justify-content-center summary ${!mock && 'preview'}`}>
+            {mock &&
+                <img
+                    src={PhoneMockup}
+                    alt="mockup"
+                />
+            }
+            <div
+                className="d-flex flex-column align-items-center info-container"
+                style={{position: mock ? 'absolute' : 'relative'}}
+            >
                 {profileDetails.profile_img &&
                     <img
                         src={profileDetails.profile_img}
@@ -32,7 +37,10 @@ function ProfileSummary() {
                     {profileDetails.email}
                 </h1>
             </div>
-            <div className="d-flex flex-column position-absolute link-container">
+            <div
+                className="d-flex flex-column position-absolute"
+                style={{top: mock ? '43.5%' : '57.5%'}}
+            >
                 {profileLinks.map((link) => {
                     const selectedLinks = selectOptions.find((option) => option.value === link.platform);
                     return (
