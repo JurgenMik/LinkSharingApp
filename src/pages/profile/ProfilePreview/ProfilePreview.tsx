@@ -1,11 +1,16 @@
 import React from 'react';
 import './ProfilePreview.scss';
 import ProfileSummary from '../../../components/ProfileSummary/ProfileSummary';
+import PreviewNav from "../../../components/PreviewNav/PreviewNav";
 
 function ProfilePreview() {
+
+    const isMobile = window.innerWidth <= 395;
+
     return (
         <div className="main-container-preview">
-            <div className="preview-header" />
+            <PreviewNav />
+            {!isMobile && <div className="preview-header" />}
             <ProfileSummary
                 mock={false}
             />

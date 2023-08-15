@@ -1,0 +1,35 @@
+@import '../../variables/variables.scss';
+
+.preview-nav {
+  position: absolute;
+  height: 5rem;
+  width: 95%;
+  margin-top: 1rem;
+  padding: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0.75rem;
+  background: white;
+  font-family: 'Instrument sans', serif;
+  #link {
+    width: 9rem;
+    padding: 0.85rem;
+    border-radius: 0.75rem;
+    border: 1px solid $DarkPurple;
+    font-weight: bold;
+    text-decoration: none;
+    color: $DarkPurple;
+    &:hover {
+      background: $LightPinkishPurple;
+    }
+  }
+  button {
+    width: 9rem;
+    padding: 0.85rem;
+    border-radius: 0.75rem;
+    border: none;
+    color: $White;
+    background: $DarkPurple;
+    font-weight: bold;
+  }
+}
