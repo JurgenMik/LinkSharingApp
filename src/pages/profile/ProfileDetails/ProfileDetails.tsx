@@ -71,7 +71,9 @@ function ProfileDetails(props: any) {
         }
     };
 
-    const handleSubmitProfileDetails = () => {
+    const handleSubmitProfileDetails = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         let fieldsAreValid = handleValidateProfileDetails();
 
         if (fieldsAreValid) {
@@ -103,7 +105,7 @@ function ProfileDetails(props: any) {
                             <ProfileSummary mock={true} />
                         </div>
                     }
-                    <div className="col rounded-3 bg-white">
+                    <form className="col rounded-3 bg-white" onSubmit={(e) => handleSubmitProfileDetails(e)}>
                         <div className="p-1 profile-intro">
                             <h1>Profile Details</h1>
                             <p>
@@ -200,11 +202,11 @@ function ProfileDetails(props: any) {
                             </div>
                         </div>
                         <div className="d-flex justify-content-end align-items-center p-0 save-profile">
-                            <button id="enabled" onClick={handleSubmitProfileDetails}>
+                            <button id="enabled" type="submit">
                                 Save
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

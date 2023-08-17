@@ -110,38 +110,40 @@ function ProfileLinks(props: any) {
                                                 Remove
                                             </h1>
                                         </div>
-                                        <label>Platform</label>
-                                        {errors && <span>{errors[index]?.platform}</span>}
-                                        <Select
-                                            isSearchable={false}
-                                            className="mb-2"
-                                            name="platform"
-                                            styles={selectStyles}
-                                            value={selectOptions.find((item: SelectItem) =>
-                                                item.value === link.platform)
-                                            }
-                                            options={selectOptions}
-                                            onChange={(e: any) =>
-                                                handleProfileLinkChange(link.id, e.value, 'platform')
-                                            }
-                                        />
-                                        <div className="d-flex flex-column position-relative">
-                                            <label>Link</label>
-                                            {errors && <span>{errors[index]?.link}</span>}
-                                            <input
-                                                name="link"
-                                                id="link-input"
-                                                placeholder="e.g https://github.com/JurgenMik"
-                                                value={link.link}
-                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                                    handleProfileLinkChange(link.id, e.target.value, 'link')
+                                        <form className="d-flex flex-column">
+                                            <label>Platform</label>
+                                            {errors && <span>{errors[index]?.platform}</span>}
+                                            <Select
+                                                isSearchable={false}
+                                                className="mb-2"
+                                                name="platform"
+                                                styles={selectStyles}
+                                                value={selectOptions.find((item: SelectItem) =>
+                                                    item.value === link.platform)
+                                                }
+                                                options={selectOptions}
+                                                onChange={(e: any) =>
+                                                    handleProfileLinkChange(link.id, e.value, 'platform')
                                                 }
                                             />
-                                            <HiOutlineLink
-                                                id="input-icon"
-                                                style={{top: errors[index]?.link ? '60%' : '45%'}}
-                                            />
-                                        </div>
+                                            <div className="d-flex flex-column position-relative">
+                                                <label>Link</label>
+                                                {errors && <span>{errors[index]?.link}</span>}
+                                                <input
+                                                    name="link"
+                                                    id="link-input"
+                                                    placeholder="e.g https://github.com/JurgenMik"
+                                                    value={link.link}
+                                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                                        handleProfileLinkChange(link.id, e.target.value, 'link')
+                                                    }
+                                                />
+                                                <HiOutlineLink
+                                                    id="input-icon"
+                                                    style={{top: errors[index]?.link ? '60%' : '45%'}}
+                                                />
+                                            </div>
+                                        </form>
                                     </div>
                                 );
                             })
