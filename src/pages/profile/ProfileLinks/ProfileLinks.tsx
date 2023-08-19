@@ -37,7 +37,15 @@ function ProfileLinks(props: any) {
     }
 
     const handleRemoveProfileLink = (id: number) => {
+        handleUpdateErrorsArray(id);
+
         props.dispatch({type: 'RemoveProfileLink', payload: {targetLink: id}});
+    }
+
+    const handleUpdateErrorsArray = (id: number) => {
+        const updatedErrors = errors.filter((error: ErrorMessage, index: number) => index !== id - 1);
+
+        setValidationErrors(updatedErrors);
     }
 
     const handleValidateProfileLinks = (): ErrorMessage[] => {
